@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head><title>ЯзРП — русский язык программирования</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>ЯзРП — русский язык программирования для Unity</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: linear-gradient(135deg, #0a0f1e 0%, #0c1222 100%);
+      font-family: 'Segoe UI', 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+      color: #e3e6f0;
+      line-height: 1.5;
+      scroll-behavior: smooth;
+    }
+
+    .container {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* header */
+    .header {
+      padding: 32px 0 24px;
+      border-bottom: 1px solid rgba(100, 150, 255, 0.3);
+      backdrop-filter: blur(8px);
+      background: rgba(10, 15, 30, 0.6);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo {
+      font-size: 2rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #b3e0ff, #6c8eff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: -0.5px;
+    }
+
+    .logo span {
+      background: none;
+      color: #ffb347;
+      -webkit-background-clip: unset;
+      background-clip: unset;
+    }
+
+    .nav {
+      display: flex;
+      gap: 2rem;
+      justify-content: flex-end;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .nav a {
+      color: #cbd5ff;
+      text-decoration: none;
+      font-weight: 500;
+      transition: 0.2s;
+    }
+
+    .nav a:hover {
+      color: white;
+      text-shadow: 0 0 5px #6c8eff;
+    }
+
+    /* hero */
+    .hero {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 40px;
+      padding: 60px 0 40px;
+    }
+
+    .hero-text {
+      flex: 1;
+    }
+
+    .hero-text h1 {
+      font-size: 3.2rem;
+      font-weight: 800;
+      background: linear-gradient(to right, #ffffff, #a0b4ff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 20px;
+    }
+
+    .badge {
+      background: #2a3752;
+      padding: 6px 14px;
+      border-radius: 40px;
+      font-size: 0.85rem;
+      display: inline-block;
+      margin-bottom: 20px;
+      border-left: 3px solid #6c8eff;
+    }
+
+    .btn-group {
+      margin-top: 32px;
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      background: #1e2a3e;
+      border: 1px solid #3c4e6c;
+      padding: 12px 28px;
+      border-radius: 40px;
+      font-weight: bold;
+      color: #eef4ff;
+      text-decoration: none;
+      transition: 0.2s;
+    }
+
+    .btn-primary {
+      background: #3b5bdb;
+      border-color: #6c8eff;
+      box-shadow: 0 4px 12px rgba(59, 91, 219, 0.3);
+    }
+
+    .btn-primary:hover {
+      background: #2c4bc0;
+      transform: translateY(-2px);
+    }
+
+    .btn-outline:hover {
+      background: #2a3a55;
+      transform: translateY(-2px);
+    }
+
+    /* code preview */
+    .code-preview {
+      flex: 1;
+      background: #0b1020;
+      border-radius: 24px;
+      padding: 20px;
+      border: 1px solid #2b3850;
+      box-shadow: 0 20px 35px -15px black;
+    }
+
+    .code-preview pre {
+      overflow-x: auto;
+      font-size: 0.9rem;
+      font-family: 'Fira Code', monospace;
+    }
+
+    .code-preview code {
+      color: #c3d4ff;
+    }
+
+    .keyword {
+      color: #ffbd7f;
+    }
+
+    .string {
+      color: #b0ffb0;
+    }
+
+    .comment {
+      color: #6f8faa;
+    }
+
+    /* features */
+    .section-title {
+      font-size: 2rem;
+      margin: 60px 0 30px;
+      text-align: center;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      margin: 40px 0;
+    }
+
+    .feature-card {
+      background: rgba(20, 28, 45, 0.7);
+      backdrop-filter: blur(4px);
+      border-radius: 28px;
+      padding: 24px;
+      border: 1px solid #2d3a55;
+      transition: 0.25s;
+    }
+
+    .feature-card:hover {
+      border-color: #6c8eff;
+      transform: translateY(-4px);
+    }
+
+    .feature-icon {
+      font-size: 2.5rem;
+      margin-bottom: 16px;
+    }
+
+    /* game-demo */
+    .demo-section {
+      background: #060b17;
+      border-radius: 32px;
+      padding: 32px;
+      margin: 40px 0;
+      border: 1px solid #2a3a55;
+    }
+
+    /* footer */
+    .footer {
+      border-top: 1px solid #1e2a44;
+      padding: 40px 0 20px;
+      margin-top: 60px;
+      text-align: center;
+      color: #8a9bd0;
+    }
+
+    @media (max-width: 800px) {
+      .hero {
+        flex-direction: column;
+      }
+      .logo {
+        font-size: 1.6rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="container">
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+        <div class="logo">Яз<span>РП</span> <span style="font-size: 0.9rem; background: none;">— язык для Unity</span></div>
+        <div class="nav">
+          <a href="#about">О языке</a>
+          <a href="#examples">Примеры</a>
+          <a href="#multiplayer">Мультиплеер</a>
+          <a href="#download">Скачать</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <main class="container">
+    <!-- HERO -->
+    <div class="hero">
+      <div class="hero-text">
+        <div class="badge">✨ Версия 1.0 — уже в разработке игр</div>
+        <h1>Пишите игры на чистом русском языке прямо в Unity</h1>
+        <p style="font-size: 1.2rem; opacity: 0.9;">Написать на "панель" "Привет, мир!"<br>Напечатать Квадрат<br>Заставить ходить объект на a, d — <strong>ЯзРП</strong> превращает команды в живую игру без C# кода.</p>
+        <div class="btn-group">
+          <a href="#download" class="btn btn-primary">Скачать пакет для Unity</a>
+          <a href="https://assetstore.unity.com/" target="_blank" class="btn btn-outline">Скоро в Asset Store</a>
+        </div>
+      </div>
+      <div class="code-preview">
+        <pre><code><span class="comment"># Игровой сценарий на ЯзРП</span>
+<span class="keyword">Написать</span> на <span class="string">"панель"</span> <span class="string">"Добро пожаловать!"</span>
+<span class="keyword">Создать игрока</span> <span class="string">"Красный"</span> управление <span class="string">"ad"</span>
+<span class="keyword">Создать текст</span> <span class="string">"Счёт"</span> позиция (20,20) текст <span class="string">"Очки: 0"</span> размер 24
+
+<span class="comment"># монетки и враги</span>
+<span class="keyword">создать объект</span> <span class="string">"Монетка1"</span> форма <span class="string">"Куб"</span> цвет <span class="string">"зелёный"</span> позиция (2,0,0)
+<span class="keyword">скорость - 6</span> объекта <span class="string">"Красный"</span>
+<span class="keyword">Заставить ходить</span> объект <span class="string">"Красный"</span> на a, d
+<span class="keyword">добавить счёт игроку</span> <span class="string">"Красный"</span> 0
+<span class="comment"># игра запущена → управляй красным кубом!</span></code></pre>
+      </div>
+    </div>
+
+    <!-- about -->
+    <div id="about">
+      <h2 class="section-title">Что такое ЯзРП?</h2>
+      <p style="text-align: center; max-width: 780px; margin: 0 auto 40px;">ЯзРП (Язык Русского Программирования) — это встроенный скриптовый язык для Unity, вдохновлённый C#, но использующий русскую лексику. Позволяет создавать объекты, управлять физикой, UI, мультиплеером и игровой логикой без написания обычных C# скриптов. Идеально для обучения, прототипирования и русскоязычного геймдева.</p>
+    </div>
+
+    <!-- features -->
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">📄</div>
+        <h3>Читаемый русский синтаксис</h3>
+        <p>Команды: <strong>Написать на "панель"</strong>, <strong>Напечатать Квадрат</strong>, <strong>создать объект</strong>, <strong>Создать текст</strong> — всё понятно с первого взгляда.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🎮</div>
+        <h3>Локальный мультиплеер</h3>
+        <p>Создайте двух игроков за секунды: <strong>Создать игрока "Красный" управление "ad"</strong> и <strong>"Синий" управление "стрелки"</strong>. Каждый собирает свои монетки.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🧩</div>
+        <h3>Геометрические фигуры + UI</h3>
+        <p>Команды <strong>создать объект ... форма "Куб" цвет "зелёный"</strong> и <strong>Создать текст ...</strong> создают игровой мир и интерфейс прямо из скрипта.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">💾</div>
+        <h3>Сохранение скриптов</h3>
+        <p>Встроенный редактор с кнопками "Сохранить", "Загрузить" + команды <strong>Путь сохранения "persistent"</strong> и <strong>Сохранить скрипт</strong>.</p>
+      </div>
+    </div>
+
+    <!-- пример мини-игры -->
+    <div id="examples">
+      <h2 class="section-title">🎲 Пример: мини-игра на двоих</h2>
+      <div class="demo-section">
+        <pre style="background: #0a1020; padding: 20px; border-radius: 20px; overflow-x: auto;"><code><span class="comment"># Мультиплеер "Кто быстрее"</span>
+<span class="keyword">Написать</span> на <span class="string">"панель"</span> <span class="string">"Игра началась! Красный vs Синий"</span>
+<span class="keyword">Создать игрока</span> <span class="string">"Красный"</span> управление <span class="string">"ad"</span>
+<span class="keyword">Создать игрока</span> <span class="string">"Синий"</span> управление <span class="string">"стрелки"</span>
+<span class="keyword">Создать текст</span> <span class="string">"Счёт_Красный"</span> позиция (20,20) текст <span class="string">"Красный: 0"</span> размер 24
+<span class="keyword">Создать текст</span> <span class="string">"Счёт_Синий"</span> позиция (20,55) текст <span class="string">"Синий: 0"</span> размер 24
+
+<span class="keyword">создать объект</span> <span class="string">"Монетка_Красный_1"</span> форма <span class="string">"Куб"</span> цвет <span class="string">"зелёный"</span> позиция (2,0,0)
+<span class="keyword">создать объект</span> <span class="string">"Монетка_Синий_1"</span> форма <span class="string">"Куб"</span> цвет <span class="string">"жёлтый"</span> позиция (-2,0,1.5)
+<span class="keyword">создать объект</span> <span class="string">"Враг_общий"</span> форма <span class="string">"Куб"</span> цвет <span class="string">"красный"</span> позиция (0,0,3)
+
+<span class="comment"># сработает автоматическая система очков при касании</span>
+<span class="keyword">Написать</span> на <span class="string">"панель"</span> <span class="string">"Управление: A/D и стрелки"</span></code></pre>
+        <p style="margin-top: 20px;">✅ После выполнения скрипта появятся два игрока, собственные монетки (+1 очко) и общий враг (-1 очко касавшемуся). Тексты очков обновляются автоматически.</p>
+      </div>
+    </div>
+
+    <!-- мультиплеер детали -->
+    <div id="multiplayer">
+      <h2 class="section-title">👥 Локальный мультиплеер — просто</h2>
+      <div style="display: flex; flex-wrap: wrap; gap: 20px; margin-bottom: 40px;">
+        <div style="flex:1; background: #0e1428; border-radius: 24px; padding: 24px;">
+          <h3>🎮 Команды для мультиплеера</h3>
+          <ul style="margin-top: 16px; list-style: none;">
+            <li>🔹 <code style="background: #1e2a3a; padding: 2px 8px;">Создать игрока "Имя" управление "ad"</code></li>
+            <li>🔹 <code style="background: #1e2a3a;">добавить счёт игроку "Имя" 1</code></li>
+            <li>🔹 <code style="background: #1e2a3a;">показать счёт игрока "Имя"</code></li>
+            <li>🔹 Объекты с именем <strong>Монетка_ИгрокX</strong> автоматически дают очки только нужному игроку</li>
+          </ul>
+        </div>
+        <div style="flex:1; background: #0e1428; border-radius: 24px; padding: 24px;">
+          <h3>🧱 Создание мира</h3>
+          <p><strong>создать объект "Имя" форма "Куб" цвет "зелёный" позиция (x,y,z)</strong><br>Поддерживаются цвета: зелёный, красный, синий, жёлтый. Можно создавать врагов, бонусы, стены.</p>
+          <p style="margin-top: 12px;"><strong>Создать текст ...</strong> — динамический интерфейс прямо из кода.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- скачать + asset store -->
+    <div id="download">
+      <h2 class="section-title">📦 Получить ЯзРП</h2>
+      <div style="text-align: center; background: #101728; border-radius: 40px; padding: 30px; margin: 20px 0;">
+        <p style="font-size: 1.3rem;">🔧 Готовый проект Unity со всеми скриптами, демо-сценой и редактором</p>
+        <div class="btn-group" style="justify-content: center; margin-top: 28px;">
+          <a href="#" class="btn btn-primary" id="downloadLink" style="pointer-events: auto;">⬇️ Скачать .unitypackage (пример)</a>
+          <a href="#" class="btn btn-outline" id="assetStoreSoon">Добавить в Asset Store (скоро)</a>
+        </div>
+        <p class="comment" style="margin-top: 20px;">* Пакет включает все скрипты из репозитория, сцену-песочницу и руководство на русском.</p>
+      </div>
+    </div>
+
+    <div style="background: #0a1028; border-radius: 36px; padding: 32px; margin: 40px 0;">
+      <h3>🧪 Как протестировать прямо сейчас?</h3>
+      <ol style="margin-left: 20px; margin-top: 16px;">
+        <li>Создайте новый 3D проект в Unity (версия 2021.3 LTS или новее).</li>
+        <li>Импортируйте скачанный .unitypackage (все скрипты ЯзРП).</li>
+        <li>Откройте сцену <strong>GameScene.unity</strong> (там есть Canvas, InputField и GameManager).</li>
+        <li>Нажмите Play → введите команды или загрузите демо-скрипт → нажмите «Выполнить».</li>
+        <li>Управляйте персонажами и наблюдайте за созданием объектов!</li>
+      </ol>
+      <p style="margin-top: 20px;">⭐ <strong>Совет:</strong> В поле ввода уже будет пример мультиплеерной игры, можно менять координаты монеток и добавлять своих врагов.</p>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>ЯзРП — открытый язык для творчества. Разработано с любовью к русскому геймдеву.</p>
+      <p style="margin-top: 12px;">📧 По вопросам: yazrp@example.com  |  GitHub / Документация: скоро</p>
+      <p style="margin-top: 24px; font-size: 0.8rem;">© 2026 Язык Русского Программирования для Unity. Все права защищены.</p>
+    </div>
+  </footer>
+
+  <script>
+    // кнопка скачивания — создаём эмуляцию (на самом деле надо будет выложить реальный файл)
+    const downloadBtn = document.getElementById('downloadLink');
+    downloadBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      alert('Демо-версия пакета: вы можете скачать архив со всеми скриптами и сценой по ссылке. (В реальном проекте здесь будет ссылка на .unitypackage)');
+      // имитация генерации пакета: можно предложить сохранить файл-заглушку, но для реального сайта нужно положить actual файл
+      // пока просто покажем информационное сообщение.
+    });
+    const assetBtn = document.getElementById('assetStoreSoon');
+    assetBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      alert('Скоро в официальном Asset Store! Сейчас вы можете скачать пакет напрямую.');
+    });
+  </script>
+</body>
+</html>
